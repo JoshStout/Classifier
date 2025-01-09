@@ -51,11 +51,10 @@ public class FileWriter {
 	 * Add 'x' in cells under columns where items are found in cell contents. This will
 	 * allow pivot tables to be made from the output file.
 	 */
-	private void fillColumns() {
+	private void traverseColumns() {
 		output = deepCopyCSV();
 		for(int i = 0; i < output.length; i++) {
-			Cell cell = new Cell(output[i][column]);
-			cell.containsItems(items);
+			Cell cell = new Cell(output[i][column], items);
 			List<String> cellCategories = cell.getCategories();
 			for(String cat : cellCategories) {
 				output[i][input[0].length + getOffset(cat)] = "x";
@@ -114,7 +113,7 @@ public class FileWriter {
 	 * @return A 2D array of Strings with newly added columns.
 	 */
 	public String[][] getOutput(){
-		fillColumns();
+		traverseColumns();
 		return output;
 	}
 

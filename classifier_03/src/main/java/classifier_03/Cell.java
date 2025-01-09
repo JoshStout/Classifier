@@ -7,29 +7,21 @@ public class Cell {
 
 	private String str;
 	private List<Item> itemsList;
-	private int row;
 	
 	/**
 	 * Represents a cell from the CSV file.
 	 * @param str A String representing the contents of the cell.
 	 */
-	public Cell(String str) {
-		this.str = str;
+	public Cell(String str, Items items) {
 		itemsList = new ArrayList<Item>();
+		this.str = str;
+		containsItems(items);
 	}
 	
 	public String getCell() {
 		return str;
 	}
-	
-	public void setRow(int row) {
-		this.row = row;
-	}
-	
-	public int getRow() {
-		return row;
-	}
-	
+		
 	/**
 	 * Add an Item object to Cell object.
 	 * @param item An Item found within the Cell's contents
@@ -59,22 +51,21 @@ public class Cell {
 	}
 	
 	/**
-	 * Returns a list of Items found within the contents of the Cell object.
-	 * @param items An Items object containing all Items that should be 
-	 * search for within the Cell object contents.
-	 * @return A list of all Items found.
+	 * Called by the constructor, it iterates through each item
+	 * and searches if it is contained within the cell's String contents. If 
+	 * item is found, the item is added to at List, which can be retrieved with 
+	 * the getItems method.
+	 * adds it to a List.
+	 * @param items Items object containing all items to search for.
 	 */
-	public List<Item> containsItems(Items items){
+	private void containsItems(Items items){
 		Item[] arr = items.getItems();
-		List<Item> list = new ArrayList<Item>();
 		String cellContents = getCell().toLowerCase(); // category files only contain lower case characters
 		for(int i = 0; i < arr.length; i++) {
 			if(cellContents.contains(arr[i].getItem())) {
-				list.add(arr[i]);
 				addItem(arr[i]);
 			}
 		}
-		return list;
 	}
 	
 }
