@@ -132,15 +132,17 @@ public class OutputWriter {
 		}	
 	}
 	
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	public void outputCSV() throws IOException {
 		FileWriter obj = new FileWriter("src/test/resources/output.csv");
 		obj.write(output[1][1]);
 		for(int i = 0; i < output.length; i++) {
 			for(int j = 0; j < output[0].length; j++) {
-				if(output[i][j] != null) {
-					obj.write(output[i][j]);
-				}
-				obj.write(",");
+				if(output[i][j] != null) obj.write(output[i][j]);
+				if(j != output[0].length - 1) obj.write(",");
 			}
 			obj.write("\n");
 		}

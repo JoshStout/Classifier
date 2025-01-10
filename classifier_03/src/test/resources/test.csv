@@ -9,9 +9,9 @@ location2,source7,type1,reporter1,item8 ,Tuesday,1,1400-1500,2,2018,2018-01
 location3,source8,type2,reporter2,  ,Tuesday,1,1600-1700,2,2018,2018-01
 location4,source9,,reporter1,stuff,Tuesday,1,1800-1900,2,2018,2018-01
 location5,source10,type1,reporter2,things  ,Wednesday,1,1100-1200,3,2018,2018-01
-location1,source11,type2,reporter1,item7item1 ,Wednesday,1,1300-1400,3,2018,2018-01
+location1,source11,type2,reporter1,item1item4item7,Wednesday,1,1300-1400,3,2018,2018-01
 location5,source10,type1,reporter2,things  ,Wednesday,1,1100-1200,3,2018,2018-01
 location5,source10,type1,reporter2,thing2  ,Wednesday,1,1100-1200,3,2018,2018-01
 location5,source10,type1,reporter2,ITem1  item2,Wednesday,1,1100-1200,3,2018,2018-01
-location5,source10,type1,reporter2,ITEM1  ,Wednesday,1,1100-1200,3,2018,2018-01
+location5,source10,type1,reporter2,ITEM1 item7,Wednesday,1,1100-1200,3,2018,2018-01
 location5,source10,type1,reporter2,spam and item1 eggs,Wednesday,1,1100-1200,3,2018,2018-01
