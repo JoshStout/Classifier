@@ -13,11 +13,15 @@ public class Cell {
 	 * @param str A String representing the contents of the cell.
 	 */
 	public Cell(String str, Items items) {
-		itemsList = new ArrayList<Item>();
 		this.str = str;
+		itemsList = new ArrayList<Item>();
 		containsItems(items);
 	}
 	
+	/**
+	 * A getter to retrieve the contents read from the cell. 
+	 * @return A String representing the contents of the cell.
+	 */
 	public String getCell() {
 		return str;
 	}
@@ -62,9 +66,7 @@ public class Cell {
 		Item[] arr = items.getItems();
 		String cellContents = getCell().toLowerCase(); // category files only contain lower case characters
 		for(int i = 0; i < arr.length; i++) {
-			if(cellContents.contains(arr[i].getItem())) {
-				addItem(arr[i]);
-			}
+			if(cellContents.contains(arr[i].getItem())) addItem(arr[i]);
 		}
 	}
 	

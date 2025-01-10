@@ -1,10 +1,11 @@
 package classifier_03;
 
-import java.util.Arrays;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class FileWriter {
+public class OutputWriter {
 	
 	private String[][] input;
 	private String[][] output;
@@ -18,12 +19,25 @@ public class FileWriter {
 	 * @param input
 	 * @param catReader
 	 */
-	public FileWriter(String[][] input, CatFileReader catReader, Items items, int column) {
+	public OutputWriter(String[][] input, CatFileReader catReader, Items items, int column) {
 		this.input = input;
 		this.catReader = catReader;
 		this.items = items;
 		this.column = column;
 		this.catMap = getPrivateMap();
+	}
+	
+	/**
+	 * 
+	 * @return A 2D array of Strings with newly added columns.
+	 * @throws IOException 
+	 */
+	public String[][] getOutput() throws IOException{
+		traverseColumn();
+		printOutput();
+		System.out.println(getCategoryMap().toString());
+		outputCSV();
+		return output;
 	}
 	
 	/**
@@ -48,10 +62,9 @@ public class FileWriter {
 	}
 	
 	/**
-	 * Add 'x' in cells under columns where items are found in cell contents. This will
-	 * allow pivot tables to be made from the output file.
+	 * 
 	 */
-	private void traverseColumns() {
+	private void traverseColumn() {
 		output = deepCopyCSV();
 		for(int i = 0; i < output.length; i++) {
 			Cell cell = new Cell(output[i][column], items);
@@ -107,27 +120,31 @@ public class FileWriter {
 	}
 	
 	/**
-	 * The output takes the input 2D array and added columns for each category
-	 * and adds "x" under the column for rows where an items is found 
-	 * belonging to that category.
-	 * @return A 2D array of Strings with newly added columns.
-	 */
-	public String[][] getOutput(){
-		traverseColumns();
-		return output;
-	}
-
-	/**
 	 * Prints out the contents of the 2D output array. 
 	 * getOutput() method must be run first.
 	 */
-	public void printOutput() {
+	private void printOutput() {
 		for(int i = 0; i < output.length; i++) {
 			for(int j = 0; j < output[0].length; j++) {
 				System.out.print(output[i][j]);
 			}
 			System.out.println();
 		}	
+	}
+	
+	public void outputCSV() throws IOException {
+		FileWriter obj = new FileWriter("src/test/resources/output.csv");
+		obj.write(output[1][1]);
+		for(int i = 0; i < output.length; i++) {
+			for(int j = 0; j < output[0].length; j++) {
+				if(output[i][j] != null) {
+					obj.write(output[i][j]);
+				}
+				obj.write(",");
+			}
+			obj.write("\n");
+		}
+		obj.close();
 	}
 
 }

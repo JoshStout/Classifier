@@ -10,6 +10,9 @@ public class CatFileReader {
 	private String[] categories;
 	private int count;
 
+	/**
+	 * 
+	 */
 	public CatFileReader() {
 		categories = new String[] {};
 		count = 0;
